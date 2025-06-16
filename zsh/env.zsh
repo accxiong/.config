@@ -1,3 +1,25 @@
+# en: en_US.UTF-8; zh: zh_CN.UTF-8
+export LC_ALL=zh_CN.UTF-8
+export LANG=zh_CN.UTF-8
+# proxy url
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+
+# 终端代理
+function proxy_on() {
+    export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+    export http_proxy="http://127.0.0.1:7890"
+    export https_proxy=$http_proxy
+    
+    export all_proxy=socks5://127.0.0.1:7890
+    curl www.google.com
+    echo -e "\n"
+    echo -e "\033[32m已开启代理\033[0m":
+}
+function proxy_off(){
+    unset http_proxy && unset https_proxy && unset all_proxy && echo -e "已关闭代理"
+}
+# 终端代理 end
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
