@@ -1,0 +1,13 @@
+*
+
+!.gitignore
+!aerospace/
+!aerospace/**
+!karabiner/
+!karabiner/**
+!kitty/
+!kitty/**
+!nvim/
+!nvim/**
+!zsh/
+!zsh/**
