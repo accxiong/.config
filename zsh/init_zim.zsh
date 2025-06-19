@@ -15,3 +15,8 @@ fi
 
 # 加载插件
 source ${ZIM_HOME}/init.zsh
+
+# 缓存 completion
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.zsh/cache"
+
