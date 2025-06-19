@@ -16,6 +16,14 @@ fi
 # 加载插件
 source ${ZIM_HOME}/init.zsh
 
+# 静默加载 zsh-vi-mode
+if [[ -f /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]]; then
+    source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh 2>/dev/null
+fi
+
+# 在 zim 所有插件加载完成后加载 fzf，避免冲突
+[ -f ~/.config/zsh/.fzf.zsh ] && source ~/.config/zsh/.fzf.zsh
+
 # 缓存 completion
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$HOME/.zsh/cache"

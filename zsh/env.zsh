@@ -61,18 +61,14 @@ eval "$(fnm env --use-on-cd)"
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+export FZF_COMPLETION_TRIGGER='?'
 export FZF_DEFAULT_OPTS='
+  --bind ctrl-t:top,change:top 
   --height 40% --reverse --border
   --color fg:242,bg:0,hl:65,fg+:15,bg+:8,hl+:108
   --color info:108,prompt:109,spinner:108,pointer:168,marker:168
 '
 
-# 静默加载 zsh-vi-mode
-if [[ -f /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]]; then
-    source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh 2>/dev/null
-fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # 异步加载 Conda
 conda_async_init() {
