@@ -29,6 +29,15 @@ if not vim.g.vscode then
   map("n", "<S-Down>", "<C-w>j", { desc = "切换到下方窗口", noremap = true, silent = true })
 end
 
+-- 普通Neovim环境下的翻页功能：使用 9j/9k 替代 Ctrl+u/d
+-- VSCode 下修改 keybindings.json 添加如下配置
+-- { "key": "ctrl+d", "command": "cursorMove", "when": "editorTextFocus && neovim.mode != 'insert'", "args": { "to": "down", "by": "line", "value": 9, "revealCursor": true } },
+-- { "key": "ctrl+u", "command": "cursorMove", "when": "editorTextFocus && neovim.mode != 'insert'", "args": { "to": "up", "by": "line", "value": 9, "revealCursor": true }
+if not vim.g.vscode then
+  map("n", "<C-u>", "9k", { desc = "向上移动9行", noremap = true, silent = true })
+  map("n", "<C-d>", "9j", { desc = "向下移动9行", noremap = true, silent = true })
+end
+
 -- vscode 窗口移动快捷键
 if vim.g.vscode then
   -- map("n", "<S-Left>", "<cmd>lua require('vscode').call('workbench.action.navigateLeft')<CR>", { desc = "Window move left" })
