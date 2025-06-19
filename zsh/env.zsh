@@ -1,6 +1,8 @@
 # en: en_US.UTF-8; zh: zh_CN.UTF-8
 export LC_ALL=zh_CN.UTF-8
 export LANG=zh_CN.UTF-8
+# export LC_ALL=en_US.UTF-8
+# export LANG=en_US.UTF-8
 # proxy url
 export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
 
@@ -20,20 +22,20 @@ function proxy_off(){
 }
 # 终端代理 end
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+#         . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
 
 # yazi cmd
 function y() {
@@ -56,4 +58,48 @@ esac
 # fnm 配置
 eval "$(fnm env --use-on-cd)"
 
+# fzf
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+export FZF_DEFAULT_OPTS='
+  --height 40% --reverse --border
+  --color fg:242,bg:0,hl:65,fg+:15,bg+:8,hl+:108
+  --color info:108,prompt:109,spinner:108,pointer:168,marker:168
+'
 
+# 静默加载 zsh-vi-mode
+if [[ -f /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh ]]; then
+    source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh 2>/dev/null
+fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# 异步加载 Conda
+conda_async_init() {
+  # 定义 conda 命令别名，首次调用时触发真实加载
+  conda() {
+    echo "正在加载 Conda 环境..." >&2
+    
+    # 移除临时别名，避免循环调用
+    unfunction conda
+    
+    # 执行原始的 conda 初始化
+    __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+            . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+        else
+            export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    
+    # 执行原始命令
+    conda "$@"
+  }
+}
+
+# 立即调用异步初始化函数
+conda_async_init
