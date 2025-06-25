@@ -5,7 +5,8 @@ alias lg='lazygit'
 alias ra='y'
 alias vim='nvim'
 alias py="python"
-
+alias nvimconfig='nvim ~/.config'
+alias wk="cd ~/workspace"
 
 # git
 alias gs='git status'
