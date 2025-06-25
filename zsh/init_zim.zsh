@@ -22,7 +22,7 @@ if [[ -f /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh 
 fi
 
 # 在 zim 所有插件加载完成后加载 fzf，避免冲突
-[ -f ~/.config/zsh/.fzf.zsh ] && source ~/.config/zsh/.fzf.zsh
+[ -f ~/.config/zsh/fzf.zsh ] && source ~/.config/zsh/fzf.zsh
 
 # 缓存 completion
 zstyle ':completion:*' use-cache on

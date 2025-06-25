@@ -402,12 +402,12 @@ run = ['move-node-to-workspace 1']
 # Chrome
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace 3'
 
 # Chrome canary
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome.canary'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace 3'
 
 # Safari
 [[on-window-detected]]
