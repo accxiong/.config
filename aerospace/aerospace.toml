@@ -365,3 +365,18 @@ run = ['layout floating']
 if.app-id = 'com.bot.pc.doubao'
 run = ['layout floating']
 
+# folo
+[[on-window-detected]]
+if.app-id = 'is.follow'
+run = ['layout floating']
+
+# 微信开发工具
+[[on-window-detected]]
+if.app-id = 'com.tencent.webplusdevtools'
+run = ['layout floating']
+
+# trae
+[[on-window-detected]]
+if.app-id = 'com.trae.app'
+run = ['layout floating']
+
