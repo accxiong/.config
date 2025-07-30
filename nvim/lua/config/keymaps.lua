@@ -16,9 +16,9 @@ end
 -- VSCode 下修改 keybindings.json 添加如下配置
 -- { "key": "ctrl+a", "command": "cursorHome", "when": "editorTextFocus" },
 -- { "key": "ctrl+e", "command": "cursorEnd", "when": "editorTextFocus" },
-map({"n", "x"}, "<C-a>", "^", { desc = "行首", noremap = true, silent = true })
+map({ "n", "x" }, "<C-a>", "^", { desc = "行首", noremap = true, silent = true })
 map("i", "<C-a>", "<C-o>^", { desc = "insert 行首", noremap = true, silent = true })
-map({"n", "x"}, "<C-e>", "$", { desc = "行尾", noremap = true, silent = true })
+map({ "n", "x" }, "<C-e>", "$", { desc = "行尾", noremap = true, silent = true })
 map("i", "<C-e>", "<C-o>$", { desc = "insert 行尾", noremap = true, silent = true })
 
 -- neovim 窗口切换：使用 shift+方向键 替代 ctrl+h/l
@@ -117,7 +117,7 @@ end
 if vim.g.vscode then
   map(
     { "n", "x", "o" },
-    "tt",
+    "<leader>yy",
     "<cmd>lua require('vscode').call('yazi-vscode.toggle')<CR>",
     { noremap = true, silent = true }
   )
