@@ -51,3 +51,9 @@ require("lazy").setup({
     },
   },
 })
+
+local opt = vim.opt
+opt.termguicolors = true
+opt.signcolumn = 'yes'
+vim.api.nvim_set_hl(0, 'FlashMatch', { fg = '#00FF00' })
+vim.api.nvim_set_hl(0, 'FlashCurrent', { fg = 'gold' })

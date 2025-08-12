@@ -1,0 +1,35 @@
+return {
+  -- {
+  --   "folke/snacks.nvim",
+  --   opts = {
+  --     picker = {
+  --       sources = {
+  --         explorer = {
+  --           win = {
+  --             list = {
+  --               keys = {
+  --                 -- 使用l键预览文件，光标保持在目录树
+  --                 ["l"] = function(picker, item)
+  --                   if item.dir then
+  --                     picker:expand(item)
+  --                   else
+  --                     picker:preview(item)  -- 预览模式，光标不移动
+  --                   end
+  --                 end,
+  --                 -- 使用Enter键打开文件，光标移动到buffer
+  --                 ["<cr>"] = function(picker, item)
+  --                   picker:edit(item)
+  --                 end,
+  --                 -- 添加h键返回上级目录
+  --                 ["h"] = function(picker, item)
+  --                   picker:parent(item)
+  --                 end,
+  --               }
+  --             }
+  --           }
+  --         }
+  --       }
+  --     }
+  --   }
+  -- }
+}

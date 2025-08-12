@@ -7,6 +7,7 @@ alias vim='nvim'
 alias py="python"
 alias nvimconfig='nvim ~/.config'
 alias wk="cd ~/workspace"
+alias wkp="~/workspace/personal"
 
 # git
 alias gs='git status'

@@ -2,15 +2,38 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+vim.g.mapleader = " "
+
 local map = vim.keymap.set
 local unmap = vim.keymap.del
 local Util = require("lazyvim.util")
+
+map("n", "<leader>q", function()
+  Snacks.bufdelete()
+end, { desc = "Delete Buffer" })
+map("n", "<leader>Q", function()
+  Snacks.bufdelete.other()
+end, { desc = "Delete Other Buffers" })
 
 -- 将 gj/gk 映射为 j/k ,实现 vscode 中跳过折叠块
 if vim.g.vscode then
   map("n", "j", "gj", { remap = true, desc = "Move down (skip folds)", silent = true })
   map("n", "k", "gk", { remap = true, desc = "Move up (skip folds)", silent = true })
 end
+
+-- 快捷操作
+map({ "v", "o" }, "w", "iw", { silent = true })
+map({ "v", "o" }, "ii", "i{", { silent = true })
+map({ "v", "o" }, "ai", "a{", { silent = true })
+map({ "v", "o" }, "b", "i(", { silent = true })
+-- map({ "v", "o", "n" }, "H", "^", { silent = true })
+-- map({ "v", "o", "n"}, "G", "g_", { silent = true })
+-- map({ "n" }, "<leader>", require("helper.smart-select-block"), { silent = true })
+
+map({ "v" }, "ie", "<Esc>ggVG", { silent = true }) -- 全选整个文件
+map({ "n" }, "die", "ggdG", { silent = true }) -- 删除整个文件内容
+map({ "n" }, "yie", "ggyG", { silent = true }) -- 复制整个文件内容
+map({ "n" }, "cie", "ggcG", { silent = true }) --
 
 -- 跳到行首: Ctrl+a，跳到行尾: Ctrl+e
 -- VSCode 下修改 keybindings.json 添加如下配置
@@ -113,12 +136,21 @@ if vim.g.vscode then
   map("n", '""', 'viw<Esc>a"<Esc>bi"<Esc>lel', { desc = "Surround word with double quotes" })
 end
 
--- yazi 文件管理器
+-- VSCode 自定义快捷键
 if vim.g.vscode then
+  -- yazi 文件管理器
   map(
     { "n", "x", "o" },
     "<leader>yy",
     "<cmd>lua require('vscode').call('yazi-vscode.toggle')<CR>",
+    { noremap = true, silent = true }
+  )
+
+  -- Lazygit for VSCode
+  map(
+    { "n", "x", "o" },
+    "<leader>gg",
+    "<cmd>lua require('vscode').call('lazygit.openLazygit')<CR>",
     { noremap = true, silent = true }
   )
 end
