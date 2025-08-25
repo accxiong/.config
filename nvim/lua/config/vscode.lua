@@ -1,4 +1,4 @@
-local is_vscode = vim.g.vscod
+local is_vscode = vim.g.vscode
 
 -- VSCode环境的下划线修复
 if is_vscode then
